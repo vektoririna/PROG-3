@@ -1,22 +1,11 @@
-"""
-    Реализовать программу шифрующую строку, задаваемую пользователем, с помощью
-    алгоритма шифрования ROT13
-"""
-
-
-def rot13(letter):
-    if ord("a") + 13 > ord(letter) >= ord("a"):
-        return chr(ord(letter) + 13)
-    elif ord("z") >= ord(letter) >= ord("a") + 13:
-        return chr(ord(letter) - 13)
-    else:
-        return letter
-
-
-def main():
-    text_to_encrypt = input("Введите текст, который нужно зашифровать: ")
-    cipher_text = "".join(list(map(rot13, text_to_encrypt)))
-    print("Результат шифрования:", cipher_text)
-
-
-main()
+def crypto(string, delt=13):
+    UA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    LA = 'abcdefghijklmnopqrstuvwxyz'
+    res = ''
+    for i in string:
+        if (i.islower()):
+            res += LA[(LA.index(i) + delt) % len(LA)]
+        else:
+            res += UA[(UA.index(i) + delt) % len(UA)]
+    return res
+print(crypto('exxegoexsrgi'))

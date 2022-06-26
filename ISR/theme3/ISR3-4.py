@@ -4,22 +4,19 @@
 """
 
 
+def rot13(letter):
+    if ord("a") + 13 > ord(letter) >= ord("a"):
+        return chr(ord(letter) + 13)
+    elif ord("z") >= ord(letter) >= ord("a") + 13:
+        return chr(ord(letter) - 13)
+    else:
+        return letter
+
+
 def main():
-    str = input('Введите строку ')
-    print(rot13(str))
+    text_to_encrypt = input("Введите текст, который нужно зашифровать: ")
+    cipher_text = "".join(list(map(rot13, text_to_encrypt)))
+    print("Результат шифрования:", cipher_text)
 
 
-def rot13(str):
-    """
-        Шифр
-    """
-    str1 = ""
-    for i in str:
-        k = ord(i)
-        if 65 <= k <= 77 or 97 <= k <= 109:
-            k += 13
-        elif 78 <= k <= 90 or 109 <= k <= 122:
-            k -= 13
-        str1 += chr(k)
-   return str1
 main()

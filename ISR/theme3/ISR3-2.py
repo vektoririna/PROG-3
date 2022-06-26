@@ -1,56 +1,26 @@
-"""
-    Разработка сценария  с реализацией операции поиска подстроки в тексте.
-"""
+def all_occurrences(search_string, what_to_find):
+    occurrence = search_string.find(what_to_find)
+    if occurrence != -1:
+        print('Первое вхождение подстроки:', occurrence)
+    else:
+        print('Нет вхождений подстроки.')
+
+    length_search_string = len(search_string)
+    length_what_to_find = len(what_to_find)
+    while occurrence != -1:
+        occurrence = search_string.find(what_to_find, occurrence +
+                                        length_what_to_find,
+                                        length_search_string)
+        if occurrence != -1:
+            print('Вхождение подстроки:', occurrence)
+        else:
+            print('Больше вхождений нет.')
 
 
 def main():
-    input_str = input("Введите строку для поиска: ")
-    searchable_str = input("Введите строку, по которой мы ищем: ")
-    firstN = 0
-    choice = None
-    while choice != '4':
-        print('1 - поиск первого вхождения подстрки')
-        print('2 - замена первой подстроки')
-        print('3 - найти все вхождения подстроки')
-        print('4 - для выхода')
-        choice = input("Сделайте  выбор (1..4) ")
-        if choice == '1':
-            firstN = search_str(input_str, searchable_str)
-            print('Положение первого вхождения искомой строки: ', firstN)
-        if choice == '2':
-            print(rep_str(input_str, searchable_str))
-        if choice == '3':
-            print('Искомые строки находятся на следующих позициях')
-            print(alle_str(firstN, input_str, searchable_str))
-
-
-def search_str(what="", where=""):
-    """
-        Поиск первого вхождения подстроки
-    """
-    return where.find(what)
-
-
-def rep_str(what="", where=""):
-    """
-        Замена подстроки
-    """
-    replace_str = input("Строка для замены: ")
-    newStr = where.replace(what, replace_str)
-    return newStr
-
-
-def alle_str(N, what="", where=""):
-    """
-        Поиск всех подстрок
-    """
-    i = N
-    lst = []
-    while i < len(where):
-        k = where.find(what, i)
-        lst.append(k)
-        i = len(what) + k
-    return lst
+    search_string = input("Введите строку. ")
+    what_to_find = input("Что бы вы хотели найти? ")
+    all_occurrences(search_string, what_to_find)
 
 
 main()
